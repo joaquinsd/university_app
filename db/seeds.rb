@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Course.destroy_all
+Student.destroy_all
+10.times do
+name = Faker::TvShows::GameOfThrones.character
+email = name.split(' ')[0].downcase + "@example.com"
+Student.create(name: name, email: email, password: "123456")
+end
 20.times do
   number = rand(1..5) * 100 + rand(1..5)
   Course.create(
@@ -15,4 +21,13 @@ Course.destroy_all
     description: Faker::GreekPhilosophers.quote
   )
 end
+
+15.times do
+  student = Student.all.sample
+  course = Course.all.sample
+  student.courses << course
+end
+
+
+
 
